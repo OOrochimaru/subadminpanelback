@@ -1,5 +1,5 @@
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
+var passport = require('passport')
+  , FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('../model/user');
 var config = require('../config/facebook');
 var socialLogin = require('../controllers/socialLoginController');
@@ -10,6 +10,7 @@ passport.use(new FacebookStrategy({
     profileFields : ['id', 'displayName', 'name', 'gender', 'profileUrl', 'emails', 'photos'],
 }, function facebookHandler(accessToken, refreshToken, profile, done){
     if (!profile.emails || !profile.emails[0].value || !profile._json.email) {
+        console.log(profile);
         throw new UnprocessableEntity('No Email Attached');
     }
     let email = profile.emails[0].value || profile._json.email;
