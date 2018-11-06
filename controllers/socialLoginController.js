@@ -18,7 +18,7 @@ module.exports.login = function(obj, callback){
                 provider : obj.profile.provider,
                 isVerified : true,
                 socialLogin : true
-sdfsdfs
+
             });
             user.save(function(err, user){
                 if (err) {
