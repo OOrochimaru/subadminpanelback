@@ -13,7 +13,9 @@ const session = require('express-session');
 const Auth = require('./routes/auth');
 
 var isProduction = process.env.PRODUCTION ? process.env.PRODUCTION: 'production';
+process.env.UV_THREADPOOL_SIZE = 20;
 var app = express();
+app.use(cors());
 
 // view engine setup
 app.use(bodyParser.urlencoded({extended: true}));
@@ -28,7 +30,6 @@ app.use(passport.session());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors())
 app.use(logger('dev'));
 
 app.use(express.json());

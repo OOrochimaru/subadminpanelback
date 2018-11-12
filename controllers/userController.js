@@ -32,7 +32,7 @@ module.exports.addEmployer = function(req, res, next){
 
     User.findOne({email: r.email}).then((userr)=>{
         if (userr) {
-            return res.json({UserFound: 'User User Already Exists'});
+            return res.json({status : 201, UserFound: 'User User Already Exists'});
         }
        new Promise((resolve, reject)=>{
                 var mailer = new mail();
@@ -42,7 +42,7 @@ module.exports.addEmployer = function(req, res, next){
             }).then(function(result){
                 if (result === true) {
                     user.save().then(function(info){
-                        return res.json({success: "User Added"})
+                        return res.json({status: 200, success: "User Added"})
                     })
                 }
             })
@@ -76,6 +76,7 @@ module.exports.userinfo = function(req, res, next){
 
 module.exports.updateuser = function(req, res, next){
     var r = req.body
+    console.log(req.params);
     console.log(req.body);
     User.findOne({_id: req.params.userid}).then(function(user){
         if (!user) {
