@@ -50,12 +50,17 @@ module.exports.addEmployer = function(req, res, next){
 };
 
 module.exports.userlist = function(req, res, next){
+    var totalRecords;
+    User.find({}).count().then(function(count){
+        totalRecords = count;
+        console.log(count);
+    });
     User.find({}).then(function(users, err){
         if (err) {
             return new Error(err);
         }
-        console.log(users);
-        return res.json({users: users});
+        // console.log(users);
+        return res.json({data: users, totalRecords: totalRecords});
     })
 };
 
@@ -130,10 +135,20 @@ module.exports.getSearched = function(req, res, next){
 };
 
 module.exports.paginationUsers = function(req, res, next){
-    var pagination = req.body.paginate;
-    var limit = pagination.rows;
-    var skip = pagination.first;
+    console.log(req.body);
+    if (req.body.paginate) {
+        var pagination = req.body.paginate;
+        var limit = pagination.rows;
+        var skip = pagination.first;
+        
+    }else{
+        var skip = req.body.skip;
+        var limit = req.body.limit;
+    }
     var totalRecords;
+    console.log("pagination",req.body.page)
+    console.log("sakip", skip)
+    console.log("limit", limit)
     User.find({}).count().then(function(count){
         totalRecords = count;
         console.log(count);

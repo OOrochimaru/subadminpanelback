@@ -42,7 +42,8 @@ app.use('/users', usersRouter);
 app.use('/auth', Auth);
 
 if (isProduction === 'production') {
-  mongoose.connect('mongodb://localhost:27017/subAdminPanel')
+  mongoose.connect(process.env.MONGOURI);
+  // mongoose.connect('mongodb://localhost:27017/subAdminPanel')
 }
 
 // catch 404 and forward to error handler
@@ -50,6 +51,9 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Magic Happens at "+process.env.PORT);
+})
 
 // error handler
 app.use(function(err, req, res, next) {
