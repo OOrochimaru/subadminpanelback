@@ -55,7 +55,7 @@ module.exports.userlist = function(req, res, next){
         totalRecords = count;
         console.log(count);
     });
-    User.find({}).then(function(users, err){
+    User.find({}).sort({lastUpdated:-1}).then(function(users, err){
         if (err) {
             return new Error(err);
         }
@@ -89,7 +89,7 @@ module.exports.updateuser = function(req, res, next){
         }
         User.findByIdAndUpdate( req.params.userid,
             { $set: { "email" : r.email, "contact_name" : r.contactname, "address":r.address,
-        "phone": r.phone, "company_name":r.companyname, "updatedAt": Date.now()} }
+        "phone": r.phone, "company_name":r.companyname, "lastUpdated": Date.now()} }
         ).then(function(user){
             if (user) {
                 return res.json({status: 200, message:'updated Successfully'});
