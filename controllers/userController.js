@@ -88,7 +88,7 @@ module.exports.deactivate = function(req, res, next){
         }
         user.status = false;
         user.save().then(function(result){
-            return res.json({status: 200, message: 'User Deactivated Successfully'});
+            return res.json({status: 200, message: 'User Deactivated Successfully', user: user});
         })
     })
 }
