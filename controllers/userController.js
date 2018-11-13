@@ -99,7 +99,7 @@ module.exports.reactivate = function(req, res, next){
         }
         user.status = true;
         user.save().then(function(result){
-            return res.json({status: 200, message: 'User Activated Successfully'});
+            return res.json({status: 200, message: 'User Activated Successfully', user: user});
         })
     })
 }
