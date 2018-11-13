@@ -89,7 +89,7 @@ module.exports.updateuser = function(req, res, next){
         }
         User.findByIdAndUpdate( req.params.userid,
             { $set: { "email" : r.email, "contact_name" : r.contactname, "address":r.address,
-        "phone": r.phone, "company_name":r.companyname } }
+        "phone": r.phone, "company_name":r.companyname, "updatedAt": Date.now()} }
         ).then(function(user){
             if (user) {
                 return res.json({status: 200, message:'updated Successfully'});
