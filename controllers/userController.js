@@ -5,6 +5,7 @@ module.exports.addEmployer = function(req, res, next){
     var user = new User();
     var r = req.body;
     user.role = 'Employer';
+    user.status = true;
     if(r.companyname !== null){
         user.company_name = req.body.companyname;
     }
