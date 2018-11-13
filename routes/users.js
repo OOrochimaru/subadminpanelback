@@ -10,5 +10,6 @@ router.post('/paginationUsers', userController.paginationUsers)
 router.post('/postAjob', userController.postAjob);
 router.put('/:userid/update', userController.updateuser);
 router.delete('/:userid/delete', userController.deleteuser);
+router.get('/:userid/deactivate', userController.deactivate);
 router.get('/:userid', userController.userinfo);
 module.exports = router;

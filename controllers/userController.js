@@ -79,6 +79,18 @@ module.exports.userinfo = function(req, res, next){
     })
 };
 
+
+module.exports.deactivate = function(req, res, next){
+    User.findOne({_id: req.params.userid}).then(function(user){
+        if (!user) {
+            return res.json({status: 401, message: 'User Not Found'});
+        }
+        user.status = false;
+        user.save().then(function(result){
+            return res.json({status: 200, message: 'User Deactivated Successfully'});
+        })
+    })
+}
 module.exports.updateuser = function(req, res, next){
     var r = req.body
     console.log(req.params);

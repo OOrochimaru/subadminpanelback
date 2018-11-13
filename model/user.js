@@ -11,7 +11,7 @@ var UserSchema = new Schema({
     address: {type: String},
     role: {type: String},
     
-    
+    status : Boolean,
     email: {type: String, required:true, unique: true},
     facebook_id : {type: String},
     google_id : {type: String},
