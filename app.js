@@ -42,7 +42,7 @@ app.use('/users', usersRouter);
 app.use('/auth', Auth);
 
 if (isProduction === 'production') {
-  mongoose.connect(process.env.MONGOURI);
+  mongoose.connect(process.env.MONGO_URI);
   // mongoose.connect('mongodb://localhost:27017/subAdminPanel')
 }
 
