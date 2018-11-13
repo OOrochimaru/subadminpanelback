@@ -112,13 +112,12 @@ module.exports.deleteuser = function(req, res, next){
 };
 
 module.exports.getEmployers = function(req, res, next){
-    User.find({role: 'Employer'}).then(function(employers){
+    User.find({role: 'Employer'}).sort({lastUpdated: -1}).then(function(employers){
         if (!employers) {
             return res.json({status: 401, message: 'employers not found'});
         }
         return res.json({status: 200, message: 'employers fetched', data: employers})
     })
- console.log("getemployers");   
 };
 
 module.exports.getSearched = function(req, res, next){
